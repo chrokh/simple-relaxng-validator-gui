@@ -48,6 +48,16 @@ namespace relax_ng
             unloadButton.Enabled = false;
         }
 
+        private void _editFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
+        {
+            txtOutput.Text = "Opened contents of file for editing: " + dialog.FileName;
+            txtOutput.Text += "IMPORTANT: File will not be reloaded when pressing Validate!";
+            dialog.FileName = null;
+            target.ReadOnly = false;
+            loadButton.Enabled = true;
+            unloadButton.Enabled = false;
+        }
+
 
         /*
          * event listeners
@@ -82,13 +92,13 @@ namespace relax_ng
         private void txtInstance_DoubleClick(object sender, EventArgs e)
         {
             if (txtInstance.ReadOnly == true)
-                _unloadFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+                _editFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void txtGrammar_DoubleClick(object sender, EventArgs e)
         {
             if (txtGrammar.ReadOnly == true)
-                _unloadFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+                _editFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void btnRemoveInstanceFile_Click(object sender, EventArgs e)
