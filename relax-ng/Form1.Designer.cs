@@ -40,11 +40,13 @@
             this.btnRemoveGrammarFile = new System.Windows.Forms.Button();
             this.btnRemoveInstanceFile = new System.Windows.Forms.Button();
             this.btnBrowseGrammar = new System.Windows.Forms.Button();
+            this.txtInstanceState = new System.Windows.Forms.TextBox();
+            this.txtGrammarState = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtInstance
             // 
-            this.txtInstance.Location = new System.Drawing.Point(12, 48);
+            this.txtInstance.Location = new System.Drawing.Point(12, 77);
             this.txtInstance.Multiline = true;
             this.txtInstance.Name = "txtInstance";
             this.txtInstance.Size = new System.Drawing.Size(292, 288);
@@ -54,7 +56,7 @@
             // 
             // txtGrammar
             // 
-            this.txtGrammar.Location = new System.Drawing.Point(324, 48);
+            this.txtGrammar.Location = new System.Drawing.Point(324, 77);
             this.txtGrammar.Multiline = true;
             this.txtGrammar.Name = "txtGrammar";
             this.txtGrammar.Size = new System.Drawing.Size(292, 288);
@@ -82,7 +84,7 @@
             // 
             // btnValidate
             // 
-            this.btnValidate.Location = new System.Drawing.Point(12, 345);
+            this.btnValidate.Location = new System.Drawing.Point(272, 399);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(75, 23);
             this.btnValidate.TabIndex = 2;
@@ -92,17 +94,17 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Enabled = false;
-            this.txtOutput.Location = new System.Drawing.Point(12, 381);
+            this.txtOutput.Location = new System.Drawing.Point(12, 436);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
+            this.txtOutput.ReadOnly = true;
             this.txtOutput.Size = new System.Drawing.Size(604, 60);
             this.txtOutput.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(94, 354);
+            this.label3.Location = new System.Drawing.Point(94, 409);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 13);
             this.label3.TabIndex = 3;
@@ -150,11 +152,35 @@
             this.btnBrowseGrammar.UseVisualStyleBackColor = true;
             this.btnBrowseGrammar.Click += new System.EventHandler(this.btnBrowseGrammar_Click);
             // 
+            // txtInstanceState
+            // 
+            this.txtInstanceState.Location = new System.Drawing.Point(12, 50);
+            this.txtInstanceState.Multiline = true;
+            this.txtInstanceState.Name = "txtInstanceState";
+            this.txtInstanceState.ReadOnly = true;
+            this.txtInstanceState.Size = new System.Drawing.Size(292, 21);
+            this.txtInstanceState.TabIndex = 5;
+            this.txtInstanceState.Text = "FREE EDITING";
+            this.txtInstanceState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtGrammarState
+            // 
+            this.txtGrammarState.Location = new System.Drawing.Point(324, 50);
+            this.txtGrammarState.Multiline = true;
+            this.txtGrammarState.Name = "txtGrammarState";
+            this.txtGrammarState.ReadOnly = true;
+            this.txtGrammarState.Size = new System.Drawing.Size(292, 21);
+            this.txtGrammarState.TabIndex = 5;
+            this.txtGrammarState.Text = "FREE EDITING";
+            this.txtGrammarState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 453);
+            this.ClientSize = new System.Drawing.Size(638, 523);
+            this.Controls.Add(this.txtGrammarState);
+            this.Controls.Add(this.txtInstanceState);
             this.Controls.Add(this.btnBrowseGrammar);
             this.Controls.Add(this.btnRemoveGrammarFile);
             this.Controls.Add(this.btnRemoveInstanceFile);
@@ -186,6 +212,8 @@
         private System.Windows.Forms.Button btnRemoveGrammarFile;
         private System.Windows.Forms.Button btnRemoveInstanceFile;
         private System.Windows.Forms.Button btnBrowseGrammar;
+        private System.Windows.Forms.TextBox txtInstanceState;
+        private System.Windows.Forms.TextBox txtGrammarState;
     }
 }
 

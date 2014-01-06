@@ -24,38 +24,41 @@ namespace relax_ng
             _validator = new Validator();
         }
 
-        private void _loadFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
+        private void _loadFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
         {
             if (!String.IsNullOrEmpty(dialog.FileName))
             {
                 AnnotatedFileReader reader = new AnnotatedFileReader(dialog.FileName);
-                target.Text = reader.Read();
                 target.ReadOnly = true;
+                target.Text = reader.Read();
                 loadButton.Enabled = false;
                 unloadButton.Enabled = true;
                 txtOutput.Text = "Loaded file: " + dialog.FileName;
                 txtOutput.Text += "\r\nIMPORTANT: There's no need to reload the file if it changes on disk, it will be automatically reloaded each time you press Validate! :)";
+                status.Text = dialog.FileName;
             }
         }
 
-        private void _unloadFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
+        private void _unloadFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
         {
             txtOutput.Text = "Unloaded file: " + dialog.FileName;
             dialog.FileName = null;
-            target.Clear();
             target.ReadOnly = false;
+            target.Clear();
             loadButton.Enabled = true;
             unloadButton.Enabled = false;
+            status.Text = "FREE EDITING";
         }
 
-        private void _editFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
+        private void _editFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
         {
+            target.ReadOnly = false;
             txtOutput.Text = "Opened contents of file for editing: " + dialog.FileName;
             txtOutput.Text += "IMPORTANT: File will not be reloaded when pressing Validate!";
             dialog.FileName = null;
-            target.ReadOnly = false;
             loadButton.Enabled = true;
             unloadButton.Enabled = false;
+            status.Text = "FREE EDITING";
         }
 
 
@@ -66,10 +69,10 @@ namespace relax_ng
         private void btnValidate_Click(object sender, EventArgs e)
         {
             if(_instanceFileDialog.FileName != null)
-                _loadFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+                _loadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
 
             if (_grammarFileDialog.FileName != null)
-                _loadFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+                _loadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
 
             _validator.SetInstance(txtInstance.Text);
             _validator.SetGrammar(txtGrammar.Text);
@@ -80,35 +83,35 @@ namespace relax_ng
         private void btnBrowseInstance_Click(object sender, EventArgs e)
         {
             _instanceFileDialog.ShowDialog();
-            _loadFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+            _loadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnBrowseGrammar_Click(object sender, EventArgs e)
         {
             _grammarFileDialog.ShowDialog();
-            _loadFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void txtInstance_DoubleClick(object sender, EventArgs e)
         {
             if (txtInstance.ReadOnly == true)
-                _editFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+                _editFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void txtGrammar_DoubleClick(object sender, EventArgs e)
         {
             if (txtGrammar.ReadOnly == true)
-                _editFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+                _editFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void btnRemoveInstanceFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnRemoveGrammarFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
         }
     }
 }
