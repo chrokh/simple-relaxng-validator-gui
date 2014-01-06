@@ -32,7 +32,6 @@
             this.txtInstance = new System.Windows.Forms.TextBox();
             this.txtGrammar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnValidate = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.btnBrowseInstance = new System.Windows.Forms.Button();
             this.btnRemoveGrammarFile = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.txtInstanceState = new System.Windows.Forms.TextBox();
             this.txtGrammarState = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnValidate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtInstance
@@ -52,6 +52,7 @@
             this.txtInstance.Size = new System.Drawing.Size(425, 288);
             this.txtInstance.TabIndex = 3;
             this.txtInstance.Text = resources.GetString("txtInstance.Text");
+            this.txtInstance.TextChanged += new System.EventHandler(this.txtInstance_TextChanged);
             this.txtInstance.DoubleClick += new System.EventHandler(this.txtInstance_DoubleClick);
             // 
             // txtGrammar
@@ -63,6 +64,7 @@
             this.txtGrammar.Size = new System.Drawing.Size(425, 288);
             this.txtGrammar.TabIndex = 6;
             this.txtGrammar.Text = resources.GetString("txtGrammar.Text");
+            this.txtGrammar.TextChanged += new System.EventHandler(this.txtGrammar_TextChanged);
             this.txtGrammar.DoubleClick += new System.EventHandler(this.txtGrammar_DoubleClick);
             // 
             // label2
@@ -74,16 +76,6 @@
             this.label2.Size = new System.Drawing.Size(213, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "RelaxNG grammar   (.rng)";
-            // 
-            // btnValidate
-            // 
-            this.btnValidate.Location = new System.Drawing.Point(12, 400);
-            this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(127, 111);
-            this.btnValidate.TabIndex = 0;
-            this.btnValidate.Text = "Validate";
-            this.btnValidate.UseVisualStyleBackColor = true;
-            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // txtOutput
             // 
@@ -172,6 +164,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Instance   (.xml)";
             // 
+            // btnValidate
+            // 
+            this.btnValidate.Enabled = false;
+            this.btnValidate.Location = new System.Drawing.Point(12, 400);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(127, 111);
+            this.btnValidate.TabIndex = 0;
+            this.btnValidate.Text = "Validate";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,7 +204,6 @@
         private System.Windows.Forms.TextBox txtInstance;
         private System.Windows.Forms.TextBox txtGrammar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btnBrowseInstance;
         private System.Windows.Forms.Button btnRemoveGrammarFile;
@@ -210,6 +212,7 @@
         private System.Windows.Forms.TextBox txtInstanceState;
         private System.Windows.Forms.TextBox txtGrammarState;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnValidate;
     }
 }
 

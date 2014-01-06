@@ -77,13 +77,12 @@ namespace relax_ng
             _validator.SetInstance(txtInstance.Text);
             _validator.SetGrammar(txtGrammar.Text);
 
-            string output;
-            if (_validator.Validate(out output))
+            if(!_validator.HasPatternMatchError)
                 btnValidate.BackColor = Color.GreenYellow;
             else
                 btnValidate.BackColor = Color.IndianRed;
 
-            txtOutput.Text = output;
+            txtOutput.Text = _validator.PatternMatchError;
         }
 
         private void btnBrowseInstance_Click(object sender, EventArgs e)
@@ -118,6 +117,48 @@ namespace relax_ng
         private void btnRemoveGrammarFile_Click(object sender, EventArgs e)
         {
             _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
+        }
+
+        private void txtInstance_TextChanged(object sender, EventArgs e)
+        {
+            _validator.SetInstance(txtInstance.Text);
+            showInstanceErrors();
+            showMatchingErrors();
+        }
+
+        private void txtGrammar_TextChanged(object sender, EventArgs e)
+        {
+            _validator.SetGrammar(txtGrammar.Text);
+            showGrammarErrors();
+            showMatchingErrors();
+        }
+
+        private void showInstanceErrors()
+        {
+            showError(!_validator.HasInstanceFormatError, _validator.InstanceFormatError, txtInstanceState);
+        }
+
+        private void showGrammarErrors()
+        {
+            showError(!_validator.HasAnyGrammarError, _validator.FirstGrammarError, txtGrammarState);
+        }
+
+        private void showMatchingErrors()
+        {
+            if(!_validator.HasAnyGrammarError && !_validator.HasInstanceFormatError)
+                showError(!_validator.HasPatternMatchError, "SUCCESSFULLY MATCHED", txtOutput);
+            else if(!_validator.HasPatternMatchError)
+                showError(!_validator.HasPatternMatchError, _validator.PatternMatchError, txtOutput);
+        }
+
+        private void showError(bool erronous, string message, Control target)
+        {
+            if (erronous)
+                target.BackColor = Color.GreenYellow;
+            else
+                target.BackColor = Color.IndianRed;
+
+            txtOutput.Text = message;
         }
     }
 }
