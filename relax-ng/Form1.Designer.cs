@@ -35,30 +35,34 @@
             this.btnValidate = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnBrowseInstance = new System.Windows.Forms.Button();
+            this.btnRemoveGrammarFile = new System.Windows.Forms.Button();
+            this.btnRemoveInstanceFile = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtInstance
             // 
-            this.txtInstance.Location = new System.Drawing.Point(12, 28);
+            this.txtInstance.Location = new System.Drawing.Point(12, 48);
             this.txtInstance.Multiline = true;
             this.txtInstance.Name = "txtInstance";
-            this.txtInstance.Size = new System.Drawing.Size(292, 308);
+            this.txtInstance.Size = new System.Drawing.Size(292, 288);
             this.txtInstance.TabIndex = 0;
             this.txtInstance.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             // 
             // txtPattern
             // 
-            this.txtPattern.Location = new System.Drawing.Point(324, 28);
+            this.txtPattern.Location = new System.Drawing.Point(324, 48);
             this.txtPattern.Multiline = true;
             this.txtPattern.Name = "txtPattern";
-            this.txtPattern.Size = new System.Drawing.Size(292, 308);
+            this.txtPattern.Size = new System.Drawing.Size(292, 288);
             this.txtPattern.TabIndex = 0;
             this.txtPattern.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 9);
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 1;
@@ -67,11 +71,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(321, 9);
+            this.label2.Location = new System.Drawing.Point(320, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 13);
+            this.label2.Size = new System.Drawing.Size(158, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "RelaxNG pattern XML (TODO)";
+            this.label2.Text = "RelaxNG grammar XML (TODO)";
             // 
             // btnValidate
             // 
@@ -101,11 +105,53 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Result of validation below";
             // 
+            // btnBrowseInstance
+            // 
+            this.btnBrowseInstance.Location = new System.Drawing.Point(147, 19);
+            this.btnBrowseInstance.Name = "btnBrowseInstance";
+            this.btnBrowseInstance.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseInstance.TabIndex = 4;
+            this.btnBrowseInstance.Text = "Browse";
+            this.btnBrowseInstance.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveGrammarFile
+            // 
+            this.btnRemoveGrammarFile.Enabled = false;
+            this.btnRemoveGrammarFile.Location = new System.Drawing.Point(541, 19);
+            this.btnRemoveGrammarFile.Name = "btnRemoveGrammarFile";
+            this.btnRemoveGrammarFile.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveGrammarFile.TabIndex = 4;
+            this.btnRemoveGrammarFile.Text = "Remove file";
+            this.btnRemoveGrammarFile.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveInstanceFile
+            // 
+            this.btnRemoveInstanceFile.Enabled = false;
+            this.btnRemoveInstanceFile.Location = new System.Drawing.Point(228, 19);
+            this.btnRemoveInstanceFile.Name = "btnRemoveInstanceFile";
+            this.btnRemoveInstanceFile.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveInstanceFile.TabIndex = 4;
+            this.btnRemoveInstanceFile.Text = "Remove file";
+            this.btnRemoveInstanceFile.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(459, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Browse";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 453);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRemoveGrammarFile);
+            this.Controls.Add(this.btnRemoveInstanceFile);
+            this.Controls.Add(this.btnBrowseInstance);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.label2);
@@ -129,6 +175,10 @@
         private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnBrowseInstance;
+        private System.Windows.Forms.Button btnRemoveGrammarFile;
+        private System.Windows.Forms.Button btnRemoveInstanceFile;
+        private System.Windows.Forms.Button button1;
     }
 }
 
