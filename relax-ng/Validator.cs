@@ -29,17 +29,20 @@ namespace relax_ng
             }
         }
 
-        public string Validate()
+        public bool Validate(out string message)
         {
             string error;
             if (_validateFormat(_instanceReader, "INSTANCE", out error))
                 if(_validateFormat(_grammarReader, "GRAMMAR", out error))
                     _validatePattern(out error);
 
-            if (error != null)
-                return error;
-            else
-                return "INSTANCE: OK\r\nGRAMMAR: OK\r\nPATTERN: OK";
+            if (error == null){
+                message = "INSTANCE: OK\r\nGRAMMAR: OK\r\nPATTERN: OK";
+                return true;
+            }else{
+                message = error;
+                return false;
+            }
         }
 
         public void SetInstance(string xml)

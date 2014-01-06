@@ -77,7 +77,13 @@ namespace relax_ng
             _validator.SetInstance(txtInstance.Text);
             _validator.SetGrammar(txtGrammar.Text);
 
-            txtOutput.Text = _validator.Validate();
+            string output;
+            if (_validator.Validate(out output))
+                btnValidate.BackColor = Color.GreenYellow;
+            else
+                btnValidate.BackColor = Color.IndianRed;
+
+            txtOutput.Text = output;
         }
 
         private void btnBrowseInstance_Click(object sender, EventArgs e)
