@@ -6,11 +6,11 @@ using System.Text;
 
 namespace relax_ng
 {
-    class AnnotatedFileReader
+    class SimpleFileReader
     {
         private string _filePath;
 
-        public AnnotatedFileReader(string filePath)
+        public SimpleFileReader(string filePath)
         {
             _filePath = filePath;
         }
@@ -20,11 +20,6 @@ namespace relax_ng
             try
             {
                 return File.ReadAllText(_filePath);
-                /*string ret = "FILE WILL RELOAD ON EACH VALIDATION: \r\n";
-                ret += _filePath + "\r\n";
-                ret += "================================\r\n";
-                ret += File.ReadAllText(_filePath);
-                return ret;*/
             }
             catch (IOException e)
             {

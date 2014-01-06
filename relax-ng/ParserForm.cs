@@ -33,7 +33,7 @@ namespace relax_ng
         {
             if (!String.IsNullOrEmpty(dialog.FileName))
             {
-                AnnotatedFileReader reader = new AnnotatedFileReader(dialog.FileName);
+                SimpleFileReader reader = new SimpleFileReader(dialog.FileName);
                 target.ReadOnly = true;
                 target.Text = reader.Read();
                 loadButton.Enabled = false;
