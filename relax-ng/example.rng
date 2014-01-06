@@ -4,7 +4,12 @@
     <element name="book">
       <oneOrMore>
         <element name="page">
-          <text/>
+          <choice>
+            <element name="foo">
+              <text/>
+            </element>
+            <text/>
+          </choice>
         </element>
       </oneOrMore>
     </element>
