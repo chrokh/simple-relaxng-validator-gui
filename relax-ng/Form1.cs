@@ -14,23 +14,26 @@ namespace relax_ng
     {
         private OpenFileDialog _instanceFileDialog;
         private OpenFileDialog _grammarFileDialog;
+        private Validator _validator;
 
         public Form1()
         {
             InitializeComponent();
             _instanceFileDialog = new OpenFileDialog();
             _grammarFileDialog = new OpenFileDialog();
+            _validator = new Validator();
         }
 
         private void _loadFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
         {
-            AnnotatedFileReader reader = new AnnotatedFileReader(dialog.FileName);
-            target.Text = reader.Read();
-            target.ReadOnly = true;
-            loadButton.Enabled = false;
-            unloadButton.Enabled = true;
-            txtOutput.Text = "Loaded file " + dialog.FileName;
-            txtOutput.Text += "\r\nIMPORTANT: You don't have to reload the file if it changes on disk, it will be reloaded each time you press Validate :) ";
+            if (!String.IsNullOrEmpty(dialog.FileName))
+            {
+                AnnotatedFileReader reader = new AnnotatedFileReader(dialog.FileName);
+                target.Text = reader.Read();
+                target.ReadOnly = true;
+                loadButton.Enabled = false;
+                unloadButton.Enabled = true;
+            }
         }
 
         private void _unloadFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
@@ -50,9 +53,9 @@ namespace relax_ng
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            string result = Validator.ValidateFromURLs("../../example.xml", "../../example.rng");
-            //string result = Validator.ValidateFromStrings(txtInstance.Text, txtPattern.Text);
-            txtOutput.Text = result;
+            _validator.SetInstance(txtInstance.Text);
+            _validator.SetGrammar(txtGrammar.Text);
+            txtOutput.Text = _validator.Validate();
         }
 
         private void btnBrowseInstance_Click(object sender, EventArgs e)

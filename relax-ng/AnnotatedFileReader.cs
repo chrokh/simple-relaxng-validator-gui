@@ -19,11 +19,12 @@ namespace relax_ng
         {
             try
             {
-                string ret = "FILE WILL RELOAD ON EACH VALIDATION: \r\n";
+                return File.ReadAllText(_filePath);
+                /*string ret = "FILE WILL RELOAD ON EACH VALIDATION: \r\n";
                 ret += _filePath + "\r\n";
                 ret += "================================\r\n";
                 ret += File.ReadAllText(_filePath);
-                return ret;
+                return ret;*/
             }
             catch (IOException e)
             {

@@ -12,6 +12,9 @@ namespace relax_ng
 {
     class Validator
     {
+        private string _instance;
+        private string _grammar;
+
         public static string ValidateFromURLs(string instanceURI, string grammarURI)
         {
             XmlReader instance = new XmlTextReader("../../example.xml");
@@ -19,10 +22,10 @@ namespace relax_ng
             return _validate(instance, grammar);
         }
 
-        public static string ValidateFromStrings(string instance, string grammar)
+        public string Validate()
         {
-            TextReader textreaderInstance = new StringReader(instance);
-            TextReader textreaderGrammar = new StringReader(grammar);
+            TextReader textreaderInstance = new StringReader(_instance);
+            TextReader textreaderGrammar = new StringReader(_grammar);
 
             XmlReader xmlreaderInstance = new XmlTextReader(textreaderInstance);
             XmlReader xmlreaderGrammar = new XmlTextReader(textreaderGrammar);
@@ -30,16 +33,35 @@ namespace relax_ng
             return _validate(xmlreaderInstance, xmlreaderGrammar);
         }
 
+        public void SetInstance(string xml)
+        {
+            _instance = xml;
+        }
+
+        public void SetGrammar(string xml)
+        {
+            _grammar = xml;
+        }
+
         private static string _validate(XmlReader instance, XmlReader grammar)
         {
-            RelaxngValidatingReader validator = new RelaxngValidatingReader(instance, grammar);
+            RelaxngValidatingReader validator;
+            try
+            {
+                validator = new RelaxngValidatingReader(instance, grammar);
+            }
+            catch (Exception e)
+            {
+                return "XML ERROR: " + e.Message;
+            }
+
             try
             {
                 while (validator.Read()) ;
             }
             catch (Exception e)
             {
-                return "ERROR: " + e.Message;
+                return "VALIDATION ERROR: " + e.Message;
             }
             return "OK";
         }
