@@ -24,7 +24,7 @@ namespace relax_ng
             InitializeComponent();
             _instanceFileDialog = new OpenFileDialog();
             _grammarFileDialog = new OpenFileDialog();
-            _validator = new Validator();
+            _validator = new Validator(txtInstance.Text, txtGrammar.Text);
         }
 
         private void _loadFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)

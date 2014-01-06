@@ -67,6 +67,12 @@ namespace relax_ng
             }
         }
 
+        public Validator(string instance, string grammar)
+        {
+            SetInstance(instance);
+            SetGrammar(grammar);
+        }
+
         public void SetInstance(string xml)
         {
             _instance = xml;
