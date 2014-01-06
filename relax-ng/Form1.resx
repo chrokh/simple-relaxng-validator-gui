@@ -117,4 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="txtInstance.Text" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;book&gt;
+  &lt;page&gt;
+    Someone must have been telling lies about Josef K.
+  &lt;/page&gt;
+  &lt;page&gt;
+    &lt;paragraph&gt;Intentionally left blank.&lt;/paragraph&gt;
+  &lt;/page&gt;
+&lt;/book&gt;</value>
+  </data>
+  <data name="txtGrammar.Text" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;grammar xmlns="http://relaxng.org/ns/structure/1.0"&gt;
+  &lt;start&gt;
+    &lt;element name="book"&gt;
+      &lt;oneOrMore&gt;
+        &lt;element name="page"&gt;
+          &lt;choice&gt;
+            &lt;element name="paragraph"&gt;
+              &lt;text/&gt;
+            &lt;/element&gt;
+            &lt;text/&gt;
+          &lt;/choice&gt;
+        &lt;/element&gt;
+      &lt;/oneOrMore&gt;
+    &lt;/element&gt;
+  &lt;/start&gt;
+&lt;/grammar&gt;</value>
+  </data>
 </root>

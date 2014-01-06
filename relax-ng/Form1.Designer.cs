@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtInstance = new System.Windows.Forms.TextBox();
             this.txtGrammar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,7 +49,7 @@
             this.txtInstance.Name = "txtInstance";
             this.txtInstance.Size = new System.Drawing.Size(292, 288);
             this.txtInstance.TabIndex = 0;
-            this.txtInstance.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            this.txtInstance.Text = resources.GetString("txtInstance.Text");
             this.txtInstance.DoubleClick += new System.EventHandler(this.txtInstance_DoubleClick);
             // 
             // txtGrammar
@@ -58,7 +59,7 @@
             this.txtGrammar.Name = "txtGrammar";
             this.txtGrammar.Size = new System.Drawing.Size(292, 288);
             this.txtGrammar.TabIndex = 0;
-            this.txtGrammar.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            this.txtGrammar.Text = resources.GetString("txtGrammar.Text");
             this.txtGrammar.DoubleClick += new System.EventHandler(this.txtGrammar_DoubleClick);
             // 
             // label1
