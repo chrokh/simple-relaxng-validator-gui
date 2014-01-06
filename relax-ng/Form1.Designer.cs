@@ -35,7 +35,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnValidate = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnBrowseInstance = new System.Windows.Forms.Button();
             this.btnRemoveGrammarFile = new System.Windows.Forms.Button();
             this.btnRemoveInstanceFile = new System.Windows.Forms.Button();
@@ -67,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 24);
+            this.label1.Location = new System.Drawing.Point(231, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 1;
@@ -84,9 +83,9 @@
             // 
             // btnValidate
             // 
-            this.btnValidate.Location = new System.Drawing.Point(272, 399);
+            this.btnValidate.Location = new System.Drawing.Point(12, 371);
             this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(75, 23);
+            this.btnValidate.Size = new System.Drawing.Size(604, 23);
             this.btnValidate.TabIndex = 2;
             this.btnValidate.Text = "Validate";
             this.btnValidate.UseVisualStyleBackColor = true;
@@ -94,25 +93,16 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(12, 436);
+            this.txtOutput.Location = new System.Drawing.Point(12, 400);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(604, 60);
+            this.txtOutput.Size = new System.Drawing.Size(604, 111);
             this.txtOutput.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(94, 409);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Result of validation below";
             // 
             // btnBrowseInstance
             // 
-            this.btnBrowseInstance.Location = new System.Drawing.Point(147, 19);
+            this.btnBrowseInstance.Location = new System.Drawing.Point(12, 19);
             this.btnBrowseInstance.Name = "btnBrowseInstance";
             this.btnBrowseInstance.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseInstance.TabIndex = 4;
@@ -134,7 +124,7 @@
             // btnRemoveInstanceFile
             // 
             this.btnRemoveInstanceFile.Enabled = false;
-            this.btnRemoveInstanceFile.Location = new System.Drawing.Point(228, 19);
+            this.btnRemoveInstanceFile.Location = new System.Drawing.Point(93, 19);
             this.btnRemoveInstanceFile.Name = "btnRemoveInstanceFile";
             this.btnRemoveInstanceFile.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveInstanceFile.TabIndex = 4;
@@ -185,7 +175,6 @@
             this.Controls.Add(this.btnRemoveGrammarFile);
             this.Controls.Add(this.btnRemoveInstanceFile);
             this.Controls.Add(this.btnBrowseInstance);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -207,7 +196,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.TextBox txtOutput;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBrowseInstance;
         private System.Windows.Forms.Button btnRemoveGrammarFile;
         private System.Windows.Forms.Button btnRemoveInstanceFile;
