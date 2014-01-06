@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtInstance = new System.Windows.Forms.TextBox();
-            this.txtPattern = new System.Windows.Forms.TextBox();
+            this.txtGrammar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnValidate = new System.Windows.Forms.Button();
@@ -38,7 +38,7 @@
             this.btnBrowseInstance = new System.Windows.Forms.Button();
             this.btnRemoveGrammarFile = new System.Windows.Forms.Button();
             this.btnRemoveInstanceFile = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBrowseGrammar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtInstance
@@ -49,15 +49,17 @@
             this.txtInstance.Size = new System.Drawing.Size(292, 288);
             this.txtInstance.TabIndex = 0;
             this.txtInstance.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            this.txtInstance.DoubleClick += new System.EventHandler(this.txtInstance_DoubleClick);
             // 
-            // txtPattern
+            // txtGrammar
             // 
-            this.txtPattern.Location = new System.Drawing.Point(324, 48);
-            this.txtPattern.Multiline = true;
-            this.txtPattern.Name = "txtPattern";
-            this.txtPattern.Size = new System.Drawing.Size(292, 288);
-            this.txtPattern.TabIndex = 0;
-            this.txtPattern.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            this.txtGrammar.Location = new System.Drawing.Point(324, 48);
+            this.txtGrammar.Multiline = true;
+            this.txtGrammar.Name = "txtGrammar";
+            this.txtGrammar.Size = new System.Drawing.Size(292, 288);
+            this.txtGrammar.TabIndex = 0;
+            this.txtGrammar.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            this.txtGrammar.DoubleClick += new System.EventHandler(this.txtGrammar_DoubleClick);
             // 
             // label1
             // 
@@ -111,8 +113,9 @@
             this.btnBrowseInstance.Name = "btnBrowseInstance";
             this.btnBrowseInstance.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseInstance.TabIndex = 4;
-            this.btnBrowseInstance.Text = "Browse";
+            this.btnBrowseInstance.Text = "Load file";
             this.btnBrowseInstance.UseVisualStyleBackColor = true;
+            this.btnBrowseInstance.Click += new System.EventHandler(this.btnBrowseInstance_Click);
             // 
             // btnRemoveGrammarFile
             // 
@@ -121,8 +124,9 @@
             this.btnRemoveGrammarFile.Name = "btnRemoveGrammarFile";
             this.btnRemoveGrammarFile.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveGrammarFile.TabIndex = 4;
-            this.btnRemoveGrammarFile.Text = "Remove file";
+            this.btnRemoveGrammarFile.Text = "Unload file";
             this.btnRemoveGrammarFile.UseVisualStyleBackColor = true;
+            this.btnRemoveGrammarFile.Click += new System.EventHandler(this.btnRemoveGrammarFile_Click);
             // 
             // btnRemoveInstanceFile
             // 
@@ -131,24 +135,26 @@
             this.btnRemoveInstanceFile.Name = "btnRemoveInstanceFile";
             this.btnRemoveInstanceFile.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveInstanceFile.TabIndex = 4;
-            this.btnRemoveInstanceFile.Text = "Remove file";
+            this.btnRemoveInstanceFile.Text = "Unload File";
             this.btnRemoveInstanceFile.UseVisualStyleBackColor = true;
+            this.btnRemoveInstanceFile.Click += new System.EventHandler(this.btnRemoveInstanceFile_Click);
             // 
-            // button1
+            // btnBrowseGrammar
             // 
-            this.button1.Location = new System.Drawing.Point(459, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBrowseGrammar.Location = new System.Drawing.Point(459, 19);
+            this.btnBrowseGrammar.Name = "btnBrowseGrammar";
+            this.btnBrowseGrammar.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseGrammar.TabIndex = 4;
+            this.btnBrowseGrammar.Text = "Load file";
+            this.btnBrowseGrammar.UseVisualStyleBackColor = true;
+            this.btnBrowseGrammar.Click += new System.EventHandler(this.btnBrowseGrammar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 453);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBrowseGrammar);
             this.Controls.Add(this.btnRemoveGrammarFile);
             this.Controls.Add(this.btnRemoveInstanceFile);
             this.Controls.Add(this.btnBrowseInstance);
@@ -156,7 +162,7 @@
             this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtPattern);
+            this.Controls.Add(this.txtGrammar);
             this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.txtInstance);
             this.Name = "Form1";
@@ -169,7 +175,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtInstance;
-        private System.Windows.Forms.TextBox txtPattern;
+        private System.Windows.Forms.TextBox txtGrammar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnValidate;
@@ -178,7 +184,7 @@
         private System.Windows.Forms.Button btnBrowseInstance;
         private System.Windows.Forms.Button btnRemoveGrammarFile;
         private System.Windows.Forms.Button btnRemoveInstanceFile;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBrowseGrammar;
     }
 }
 
