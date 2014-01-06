@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace relax_ng
 {
-    public partial class Form1 : Form
+    public partial class ParserForm : Form
     {
         private OpenFileDialog _instanceFileDialog;
         private OpenFileDialog _grammarFileDialog;
@@ -19,7 +19,7 @@ namespace relax_ng
         private static Color COLOR_WRONG = Color.PaleVioletRed,
                              COLOR_RIGHT = Color.GreenYellow;
 
-        public Form1()
+        public ParserForm()
         {
             InitializeComponent();
             _instanceFileDialog = new OpenFileDialog();

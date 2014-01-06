@@ -1,6 +1,6 @@
 ﻿namespace relax_ng
 {
-    partial class Form1
+    partial class ParserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParserForm));
             this.txtInstance = new System.Windows.Forms.TextBox();
             this.txtGrammar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
