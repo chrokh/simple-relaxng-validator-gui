@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>RelaxNG</id>
+    <version>3.0.2</version>
+    <title>mono Commons.Xml.Relaxng</title>
+    <authors>Atsushi Enomoto, Alexandre Alapetite, the Mono team</authors>
+    <owners>Atsushi Enomoto, Alexandre Alapetite, the Mono team</owners>
+    <licenseUrl>http://www.mono-project.com/FAQ:_Licensing</licenseUrl>
+    <projectUrl>https://github.com/mono/mono/tree/master/mcs/class/Commons.Xml.Relaxng</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>RelaxngValidatingReader is an implementation to validate XML with RELAX NG
+  grammar. You can use full standard grammar components with it.
+
+  Currently it supports both xml syntax and compact syntax.</description>
+    <references>
+      <reference file="Commons.Xml.Relaxng.dll" />
+    </references>
+  </metadata>
+</package>
