@@ -33,12 +33,14 @@ namespace relax_ng
                 target.ReadOnly = true;
                 loadButton.Enabled = false;
                 unloadButton.Enabled = true;
+                txtOutput.Text = "Loaded file: " + dialog.FileName;
+                txtOutput.Text += "\r\nIMPORTANT: There's no need to reload the file if it changes on disk, it will be automatically reloaded each time you press Validate! :)";
             }
         }
 
         private void _unloadFile(OpenFileDialog dialog, TextBox target, Button loadButton, Button unloadButton)
         {
-            txtOutput.Text = "Unloaded file " + dialog.FileName;
+            txtOutput.Text = "Unloaded file: " + dialog.FileName;
             dialog.FileName = null;
             target.Clear();
             target.ReadOnly = false;
@@ -53,8 +55,15 @@ namespace relax_ng
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
+            if(_instanceFileDialog.FileName != null)
+                _loadFile(_instanceFileDialog, txtInstance, btnBrowseInstance, btnRemoveInstanceFile);
+
+            if (_grammarFileDialog.FileName != null)
+                _loadFile(_grammarFileDialog, txtGrammar, btnBrowseGrammar, btnRemoveGrammarFile);
+
             _validator.SetInstance(txtInstance.Text);
             _validator.SetGrammar(txtGrammar.Text);
+
             txtOutput.Text = _validator.Validate();
         }
 
