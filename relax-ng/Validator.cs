@@ -14,23 +14,32 @@ namespace relax_ng
     {
         private string _instance;
         private string _grammar;
-
-        public static string ValidateFromURLs(string instanceURI, string grammarURI)
+        private XmlTextReader _grammarReader
         {
-            XmlReader instance = new XmlTextReader("../../example.xml");
-            XmlReader grammar = new XmlTextReader("../../example.rng");
-            return _validate(instance, grammar);
+            get
+            {
+                return new XmlTextReader(new StringReader(_grammar));
+            }
+        }
+        private XmlTextReader _instanceReader
+        {
+            get
+            {
+                return new XmlTextReader(new StringReader(_instance));
+            }
         }
 
         public string Validate()
         {
-            TextReader textreaderInstance = new StringReader(_instance);
-            TextReader textreaderGrammar = new StringReader(_grammar);
+            string error;
+            if (_validateFormat(_instanceReader, "INSTANCE", out error))
+                if(_validateFormat(_grammarReader, "GRAMMAR", out error))
+                    _validatePattern(out error);
 
-            XmlReader xmlreaderInstance = new XmlTextReader(textreaderInstance);
-            XmlReader xmlreaderGrammar = new XmlTextReader(textreaderGrammar);
-
-            return _validate(xmlreaderInstance, xmlreaderGrammar);
+            if (error != null)
+                return error;
+            else
+                return "INSTANCE: OK\r\nGRAMMAR: OK\r\nPATTERN: OK";
         }
 
         public void SetInstance(string xml)
@@ -43,16 +52,32 @@ namespace relax_ng
             _grammar = xml;
         }
 
-        private static string _validate(XmlReader instance, XmlReader grammar)
+        private bool _validateFormat(XmlReader reader, string type, out string error)
+        {
+            try
+            {
+                while (reader.Read()) ;
+                error = null;
+                return true;
+            }
+            catch (XmlException e)
+            {
+                error = type + " PARSE ERROR: " + e.Message;
+                return false;
+            }
+        }
+
+        private bool _validatePattern(out string error)
         {
             RelaxngValidatingReader validator;
             try
             {
-                validator = new RelaxngValidatingReader(instance, grammar);
+                validator = new RelaxngValidatingReader(_instanceReader, _grammarReader);
             }
             catch (Exception e)
             {
-                return "XML ERROR: " + e.Message;
+                error =  "PARSE ERROR: " + e.Message;
+                return false;
             }
 
             try
@@ -61,9 +86,12 @@ namespace relax_ng
             }
             catch (Exception e)
             {
-                return "VALIDATION ERROR: " + e.Message;
+                error = "PATTERN ERROR: " + e.Message;
+                return false;
             }
-            return "OK";
+
+            error = null;
+            return true;
         }
     }
 }
