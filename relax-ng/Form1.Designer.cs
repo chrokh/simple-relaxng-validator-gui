@@ -50,7 +50,7 @@
             this.txtInstance.Multiline = true;
             this.txtInstance.Name = "txtInstance";
             this.txtInstance.Size = new System.Drawing.Size(425, 288);
-            this.txtInstance.TabIndex = 0;
+            this.txtInstance.TabIndex = 3;
             this.txtInstance.Text = resources.GetString("txtInstance.Text");
             this.txtInstance.DoubleClick += new System.EventHandler(this.txtInstance_DoubleClick);
             // 
@@ -61,7 +61,7 @@
             this.txtGrammar.Multiline = true;
             this.txtGrammar.Name = "txtGrammar";
             this.txtGrammar.Size = new System.Drawing.Size(425, 288);
-            this.txtGrammar.TabIndex = 0;
+            this.txtGrammar.TabIndex = 6;
             this.txtGrammar.Text = resources.GetString("txtGrammar.Text");
             this.txtGrammar.DoubleClick += new System.EventHandler(this.txtGrammar_DoubleClick);
             // 
@@ -80,7 +80,7 @@
             this.btnValidate.Location = new System.Drawing.Point(12, 400);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(127, 111);
-            this.btnValidate.TabIndex = 2;
+            this.btnValidate.TabIndex = 0;
             this.btnValidate.Text = "Validate";
             this.btnValidate.UseVisualStyleBackColor = true;
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
@@ -93,13 +93,14 @@
             this.txtOutput.ReadOnly = true;
             this.txtOutput.Size = new System.Drawing.Size(723, 111);
             this.txtOutput.TabIndex = 0;
+            this.txtOutput.TabStop = false;
             // 
             // btnBrowseInstance
             // 
             this.btnBrowseInstance.Location = new System.Drawing.Point(12, 43);
             this.btnBrowseInstance.Name = "btnBrowseInstance";
             this.btnBrowseInstance.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseInstance.TabIndex = 4;
+            this.btnBrowseInstance.TabIndex = 1;
             this.btnBrowseInstance.Text = "Load file";
             this.btnBrowseInstance.UseVisualStyleBackColor = true;
             this.btnBrowseInstance.Click += new System.EventHandler(this.btnBrowseInstance_Click);
@@ -110,7 +111,7 @@
             this.btnRemoveGrammarFile.Location = new System.Drawing.Point(524, 43);
             this.btnRemoveGrammarFile.Name = "btnRemoveGrammarFile";
             this.btnRemoveGrammarFile.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveGrammarFile.TabIndex = 4;
+            this.btnRemoveGrammarFile.TabIndex = 5;
             this.btnRemoveGrammarFile.Text = "Unload file";
             this.btnRemoveGrammarFile.UseVisualStyleBackColor = true;
             this.btnRemoveGrammarFile.Click += new System.EventHandler(this.btnRemoveGrammarFile_Click);
@@ -121,7 +122,7 @@
             this.btnRemoveInstanceFile.Location = new System.Drawing.Point(93, 43);
             this.btnRemoveInstanceFile.Name = "btnRemoveInstanceFile";
             this.btnRemoveInstanceFile.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveInstanceFile.TabIndex = 4;
+            this.btnRemoveInstanceFile.TabIndex = 2;
             this.btnRemoveInstanceFile.Text = "Unload File";
             this.btnRemoveInstanceFile.UseVisualStyleBackColor = true;
             this.btnRemoveInstanceFile.Click += new System.EventHandler(this.btnRemoveInstanceFile_Click);
@@ -144,6 +145,7 @@
             this.txtInstanceState.ReadOnly = true;
             this.txtInstanceState.Size = new System.Drawing.Size(425, 21);
             this.txtInstanceState.TabIndex = 5;
+            this.txtInstanceState.TabStop = false;
             this.txtInstanceState.Text = "FREE EDITING";
             this.txtInstanceState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -155,6 +157,7 @@
             this.txtGrammarState.ReadOnly = true;
             this.txtGrammarState.Size = new System.Drawing.Size(425, 21);
             this.txtGrammarState.TabIndex = 5;
+            this.txtGrammarState.TabStop = false;
             this.txtGrammarState.Text = "FREE EDITING";
             this.txtGrammarState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
