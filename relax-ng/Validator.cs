@@ -22,6 +22,20 @@ namespace relax_ng
         public bool HasGrammarRuleError { get { return GrammarRuleError != null; } }
         public bool HasAnyGrammarError { get { return GrammarFormatError != null || GrammarRuleError != null; } }
         public bool HasPatternMatchError { get { return PatternMatchError != null; } }
+        public string FirstError
+        {
+            get
+            {
+                if (HasInstanceFormatError)
+                    return InstanceFormatError;
+                else if (HasAnyGrammarError)
+                    return FirstGrammarError;
+                else if (HasPatternMatchError)
+                    return PatternMatchError;
+                else
+                    return null;
+            }
+        }
         public string FirstGrammarError
         {
             get
@@ -71,13 +85,15 @@ namespace relax_ng
             bool grammarFormat = _validateGrammarFormat();
 
             bool grammarRules = false;
-            if(grammarFormat)
+            if (grammarFormat)
                 grammarRules = _validateGrammarRules();
+            else
+                GrammarRuleError = "Invalid XML";
 
             if(instanceFormat && grammarFormat && grammarRules)
                 if (_validatePattern())
                     return;
-
+            
             PatternMatchError = "Earlier errors exist";
         }
 
@@ -99,6 +115,9 @@ namespace relax_ng
 
         private bool _validateGrammarRules()
         {
+            if (!_validateGrammarFormat())
+                return false;
+
             try
             {
                 RelaxngPattern pattern = RelaxngPattern.Read(_grammarReader);

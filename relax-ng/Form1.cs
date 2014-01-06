@@ -16,6 +16,9 @@ namespace relax_ng
         private OpenFileDialog _grammarFileDialog;
         private Validator _validator;
 
+        private static Color COLOR_WRONG = Color.IndianRed,
+                             COLOR_RIGHT = Color.GreenYellow;
+
         public Form1()
         {
             InitializeComponent();
@@ -66,97 +69,83 @@ namespace relax_ng
          * event listeners
          */
 
-        private void btnValidate_Click(object sender, EventArgs e)
-        {
-            if(_instanceFileDialog.FileName != null)
-                _loadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
-
-            if (_grammarFileDialog.FileName != null)
-                _loadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
-
-            _validator.SetInstance(txtInstance.Text);
-            _validator.SetGrammar(txtGrammar.Text);
-
-            if(!_validator.HasPatternMatchError)
-                btnValidate.BackColor = Color.GreenYellow;
-            else
-                btnValidate.BackColor = Color.IndianRed;
-
-            txtOutput.Text = _validator.PatternMatchError;
-        }
-
         private void btnBrowseInstance_Click(object sender, EventArgs e)
         {
             _instanceFileDialog.ShowDialog();
-            _loadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
+            _loadFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnBrowseGrammar_Click(object sender, EventArgs e)
         {
             _grammarFileDialog.ShowDialog();
-            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
+            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void txtInstance_DoubleClick(object sender, EventArgs e)
         {
             if (txtInstance.ReadOnly == true)
-                _editFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
+                _editFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void txtGrammar_DoubleClick(object sender, EventArgs e)
         {
             if (txtGrammar.ReadOnly == true)
-                _editFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
+                _editFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void btnRemoveInstanceFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceState, btnBrowseInstance, btnRemoveInstanceFile);
+            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnRemoveGrammarFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarState, btnBrowseGrammar, btnRemoveGrammarFile);
+            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void txtInstance_TextChanged(object sender, EventArgs e)
         {
             _validator.SetInstance(txtInstance.Text);
-            showInstanceErrors();
-            showMatchingErrors();
+            _showAllErrors();
         }
 
         private void txtGrammar_TextChanged(object sender, EventArgs e)
         {
             _validator.SetGrammar(txtGrammar.Text);
-            showGrammarErrors();
-            showMatchingErrors();
+            _showAllErrors();
         }
 
-        private void showInstanceErrors()
+        private void _showAllErrors()
         {
-            showError(!_validator.HasInstanceFormatError, _validator.InstanceFormatError, txtInstanceState);
+            if (_validator.HasInstanceFormatError)
+                txtInstanceValidnessXML.BackColor = COLOR_WRONG;
+            else
+                txtInstanceValidnessXML.BackColor = COLOR_RIGHT;
+
+            if (_validator.HasGrammarFormatError)
+                txtGrammarValidnessXML.BackColor = COLOR_WRONG;
+            else
+                txtGrammarValidnessXML.BackColor = COLOR_RIGHT;
+
+            if (_validator.HasGrammarRuleError)
+                txtGrammarValidnessRNG.BackColor = COLOR_WRONG;
+            else
+                txtGrammarValidnessRNG.BackColor = COLOR_RIGHT;
+
+            if (_validator.HasPatternMatchError)
+                txtOutput.BackColor = COLOR_WRONG;
+            else
+                txtOutput.BackColor = COLOR_RIGHT;
+
+            txtOutput.Text = _validator.FirstError;
         }
 
-        private void showGrammarErrors()
-        {
-            showError(!_validator.HasAnyGrammarError, _validator.FirstGrammarError, txtGrammarState);
-        }
-
-        private void showMatchingErrors()
-        {
-            if(!_validator.HasAnyGrammarError && !_validator.HasInstanceFormatError)
-                showError(!_validator.HasPatternMatchError, "SUCCESSFULLY MATCHED", txtOutput);
-            else if(!_validator.HasPatternMatchError)
-                showError(!_validator.HasPatternMatchError, _validator.PatternMatchError, txtOutput);
-        }
-
-        private void showError(bool erronous, string message, Control target)
+        private void _showError(bool erronous, string message, Control target)
         {
             if (erronous)
-                target.BackColor = Color.GreenYellow;
-            else
                 target.BackColor = Color.IndianRed;
+            else
+                target.BackColor = Color.GreenYellow;
 
             txtOutput.Text = message;
         }
