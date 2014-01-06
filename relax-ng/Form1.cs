@@ -16,7 +16,7 @@ namespace relax_ng
         private OpenFileDialog _grammarFileDialog;
         private Validator _validator;
 
-        private static Color COLOR_WRONG = Color.IndianRed,
+        private static Color COLOR_WRONG = Color.PaleVioletRed,
                              COLOR_RIGHT = Color.GreenYellow;
 
         public Form1()
@@ -25,9 +25,11 @@ namespace relax_ng
             _instanceFileDialog = new OpenFileDialog();
             _grammarFileDialog = new OpenFileDialog();
             _validator = new Validator(txtInstance.Text, txtGrammar.Text);
+            txtInstance_TextChanged(null, null);
+            txtGrammar_TextChanged(null, null);
         }
 
-        private void _loadFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
+        private void _loadFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
         {
             if (!String.IsNullOrEmpty(dialog.FileName))
             {
@@ -36,13 +38,11 @@ namespace relax_ng
                 target.Text = reader.Read();
                 loadButton.Enabled = false;
                 unloadButton.Enabled = true;
-                txtOutput.Text = "Loaded file: " + dialog.FileName;
-                txtOutput.Text += "\r\nIMPORTANT: There's no need to reload the file if it changes on disk, it will be automatically reloaded each time you press Validate! :)";
-                status.Text = dialog.FileName;
+                fileNameContainer.Text = dialog.FileName;
             }
         }
 
-        private void _unloadFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
+        private void _unloadFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
         {
             txtOutput.Text = "Unloaded file: " + dialog.FileName;
             dialog.FileName = null;
@@ -50,18 +50,16 @@ namespace relax_ng
             target.Clear();
             loadButton.Enabled = true;
             unloadButton.Enabled = false;
-            status.Text = "FREE EDITING";
+            fileNameContainer.Clear();
         }
 
-        private void _editFile(OpenFileDialog dialog, TextBox target, TextBox status, Button loadButton, Button unloadButton)
+        private void _editFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
         {
             target.ReadOnly = false;
-            txtOutput.Text = "Opened contents of file for editing: " + dialog.FileName;
-            txtOutput.Text += "IMPORTANT: File will not be reloaded when pressing Validate!";
             dialog.FileName = null;
             loadButton.Enabled = true;
             unloadButton.Enabled = false;
-            status.Text = "FREE EDITING";
+            fileNameContainer.Clear();
         }
 
 
@@ -72,35 +70,35 @@ namespace relax_ng
         private void btnBrowseInstance_Click(object sender, EventArgs e)
         {
             _instanceFileDialog.ShowDialog();
-            _loadFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
+            _loadFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnBrowseGrammar_Click(object sender, EventArgs e)
         {
             _grammarFileDialog.ShowDialog();
-            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
+            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void txtInstance_DoubleClick(object sender, EventArgs e)
         {
             if (txtInstance.ReadOnly == true)
-                _editFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
+                _editFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void txtGrammar_DoubleClick(object sender, EventArgs e)
         {
             if (txtGrammar.ReadOnly == true)
-                _editFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
+                _editFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void btnRemoveInstanceFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceValidnessXML, btnBrowseInstance, btnRemoveInstanceFile);
+            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
         }
 
         private void btnRemoveGrammarFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarValidnessXML, btnBrowseGrammar, btnRemoveGrammarFile);
+            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
         private void txtInstance_TextChanged(object sender, EventArgs e)
@@ -133,9 +131,9 @@ namespace relax_ng
                 txtGrammarValidnessRNG.BackColor = COLOR_RIGHT;
 
             if (_validator.HasPatternMatchError)
-                txtOutput.BackColor = COLOR_WRONG;
+                txtPatternMatchValidness.BackColor = COLOR_WRONG;
             else
-                txtOutput.BackColor = COLOR_RIGHT;
+                txtPatternMatchValidness.BackColor = COLOR_RIGHT;
 
             txtOutput.Text = _validator.FirstError;
         }

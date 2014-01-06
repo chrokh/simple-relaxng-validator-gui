@@ -41,6 +41,10 @@
             this.txtGrammarValidnessXML = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGrammarValidnessRNG = new System.Windows.Forms.TextBox();
+            this.txtInstanceEditMode = new System.Windows.Forms.TextBox();
+            this.txtGrammarEditMode = new System.Windows.Forms.TextBox();
+            this.txtPatternMatchValidness = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtInstance
@@ -80,11 +84,11 @@
             // txtOutput
             // 
             this.txtOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutput.Location = new System.Drawing.Point(12, 400);
+            this.txtOutput.Location = new System.Drawing.Point(12, 423);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(856, 111);
+            this.txtOutput.Size = new System.Drawing.Size(856, 73);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.TabStop = false;
             // 
@@ -132,6 +136,7 @@
             // 
             // txtInstanceValidnessXML
             // 
+            this.txtInstanceValidnessXML.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInstanceValidnessXML.Location = new System.Drawing.Point(12, 371);
             this.txtInstanceValidnessXML.Multiline = true;
             this.txtInstanceValidnessXML.Name = "txtInstanceValidnessXML";
@@ -144,6 +149,7 @@
             // 
             // txtGrammarValidnessXML
             // 
+            this.txtGrammarValidnessXML.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGrammarValidnessXML.Location = new System.Drawing.Point(443, 371);
             this.txtGrammarValidnessXML.Multiline = true;
             this.txtGrammarValidnessXML.Name = "txtGrammarValidnessXML";
@@ -166,6 +172,7 @@
             // 
             // txtGrammarValidnessRNG
             // 
+            this.txtGrammarValidnessRNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGrammarValidnessRNG.Location = new System.Drawing.Point(661, 371);
             this.txtGrammarValidnessRNG.Multiline = true;
             this.txtGrammarValidnessRNG.Name = "txtGrammarValidnessRNG";
@@ -176,13 +183,63 @@
             this.txtGrammarValidnessRNG.Text = "Valid RNG?";
             this.txtGrammarValidnessRNG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // txtInstanceEditMode
+            // 
+            this.txtInstanceEditMode.Location = new System.Drawing.Point(12, 72);
+            this.txtInstanceEditMode.Multiline = true;
+            this.txtInstanceEditMode.Name = "txtInstanceEditMode";
+            this.txtInstanceEditMode.ReadOnly = true;
+            this.txtInstanceEditMode.Size = new System.Drawing.Size(425, 21);
+            this.txtInstanceEditMode.TabIndex = 5;
+            this.txtInstanceEditMode.TabStop = false;
+            this.txtInstanceEditMode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtGrammarEditMode
+            // 
+            this.txtGrammarEditMode.Location = new System.Drawing.Point(443, 71);
+            this.txtGrammarEditMode.Multiline = true;
+            this.txtGrammarEditMode.Name = "txtGrammarEditMode";
+            this.txtGrammarEditMode.ReadOnly = true;
+            this.txtGrammarEditMode.Size = new System.Drawing.Size(425, 21);
+            this.txtGrammarEditMode.TabIndex = 5;
+            this.txtGrammarEditMode.TabStop = false;
+            this.txtGrammarEditMode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPatternMatchValidness
+            // 
+            this.txtPatternMatchValidness.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPatternMatchValidness.Location = new System.Drawing.Point(12, 396);
+            this.txtPatternMatchValidness.Multiline = true;
+            this.txtPatternMatchValidness.Name = "txtPatternMatchValidness";
+            this.txtPatternMatchValidness.ReadOnly = true;
+            this.txtPatternMatchValidness.Size = new System.Drawing.Size(856, 21);
+            this.txtPatternMatchValidness.TabIndex = 5;
+            this.txtPatternMatchValidness.TabStop = false;
+            this.txtPatternMatchValidness.Text = "Instance respects grammar?";
+            this.txtPatternMatchValidness.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(166, 499);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(558, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "The error above always corresponds to the first occured error (first red-marked b" +
+    "ox above). Left to right, top to bottom.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 523);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtGrammarValidnessRNG);
             this.Controls.Add(this.txtGrammarValidnessXML);
+            this.Controls.Add(this.txtGrammarEditMode);
+            this.Controls.Add(this.txtInstanceEditMode);
+            this.Controls.Add(this.txtPatternMatchValidness);
             this.Controls.Add(this.txtInstanceValidnessXML);
             this.Controls.Add(this.btnBrowseGrammar);
             this.Controls.Add(this.btnRemoveGrammarFile);
@@ -214,6 +271,10 @@
         private System.Windows.Forms.TextBox txtGrammarValidnessXML;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtGrammarValidnessRNG;
+        private System.Windows.Forms.TextBox txtInstanceEditMode;
+        private System.Windows.Forms.TextBox txtGrammarEditMode;
+        private System.Windows.Forms.TextBox txtPatternMatchValidness;
+        private System.Windows.Forms.Label label3;
     }
 }
 

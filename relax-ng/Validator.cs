@@ -96,11 +96,10 @@ namespace relax_ng
             else
                 GrammarRuleError = "Invalid XML";
 
-            if(instanceFormat && grammarFormat && grammarRules)
-                if (_validatePattern())
-                    return;
-            
-            PatternMatchError = "Earlier errors exist";
+            if (instanceFormat && grammarFormat && grammarRules)
+                _validatePattern();
+            else
+                PatternMatchError = "Earlier errors exist";
         }
 
         private bool _validateInstanceFormat()
