@@ -9,12 +9,14 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
 x64/
 build/
 bld/
-[Bb]in/
 [Oo]bj/
+
+# All release build results but executable
+relax-ng/bin/Release/*
+!relax-ng/bin/Release/relax-ng.exe
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
