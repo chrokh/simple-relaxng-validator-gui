@@ -46,7 +46,7 @@ namespace relax_ng
             else
             {
                 _output.ReadOnly = false;
-                _output.Text = "Unloaded file: " + _dialog.FileName + ". Not listening for changes...";
+                _output.Text = "Unloaded file. Not listening for changes...";
                 _dialog.FileName = null;
                 _loadButton.Enabled = true;
                 _unloadButton.Enabled = false;
