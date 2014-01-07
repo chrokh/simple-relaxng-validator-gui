@@ -28,8 +28,8 @@ namespace relax_ng
             txtInstance_TextChanged(null, null);
             txtGrammar_TextChanged(null, null);
 
-            _instanceFile = new XmlFileView(new OpenFileDialog(), txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
-            _grammarFile = new XmlFileView(new OpenFileDialog(), txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
+            _instanceFile = new XmlFileView(this, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
+            _grammarFile = new XmlFileView(this, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
 
