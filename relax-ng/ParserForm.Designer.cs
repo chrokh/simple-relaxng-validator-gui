@@ -55,7 +55,9 @@
             this.txtInstance.Name = "txtInstance";
             this.txtInstance.Size = new System.Drawing.Size(425, 267);
             this.txtInstance.TabIndex = 3;
-            this.txtInstance.Text = resources.GetString("txtInstance.Text");
+            this.txtInstance.Text = "<?xml version=\"1.0\"?>\r\n<book>\r\n  <page>\r\n    Someone must have been telling lies " +
+    "about Josef K.\r\n  </page>\r\n  <page>\r\n    <paragraph>Intentionally left blank.</p" +
+    "aragraph>\r\n  </page>\r\n</book>";
             this.txtInstance.TextChanged += new System.EventHandler(this.txtInstance_TextChanged);
             this.txtInstance.DoubleClick += new System.EventHandler(this.txtInstance_DoubleClick);
             // 
