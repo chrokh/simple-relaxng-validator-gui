@@ -215,7 +215,7 @@
             this.txtPatternMatchValidness.Size = new System.Drawing.Size(856, 21);
             this.txtPatternMatchValidness.TabIndex = 5;
             this.txtPatternMatchValidness.TabStop = false;
-            this.txtPatternMatchValidness.Text = "Instance respects grammar?";
+            this.txtPatternMatchValidness.Text = "Instance conforms to grammar?";
             this.txtPatternMatchValidness.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -229,7 +229,7 @@
     "ox above). Left to right, top to bottom.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // ParserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -250,7 +250,7 @@
             this.Controls.Add(this.txtGrammar);
             this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.txtInstance);
-            this.Name = "Form1";
+            this.Name = "ParserForm";
             this.Text = "Simple RelaxNG Validator";
             this.ResumeLayout(false);
             this.PerformLayout();
