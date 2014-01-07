@@ -57,6 +57,7 @@
     <Compile Include="Validator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlFileView.cs" />
     <EmbeddedResource Include="ParserForm.resx">
       <DependentUpon>ParserForm.cs</DependentUpon>
     </EmbeddedResource>

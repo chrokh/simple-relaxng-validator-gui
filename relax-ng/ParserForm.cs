@@ -12,54 +12,24 @@ namespace relax_ng
 {
     public partial class ParserForm : Form
     {
-        private OpenFileDialog _instanceFileDialog;
-        private OpenFileDialog _grammarFileDialog;
         private Validator _validator;
 
         private static Color COLOR_WRONG = Color.PaleVioletRed,
                              COLOR_RIGHT = Color.GreenYellow;
+        private XmlFileView _instanceFile;
+        private XmlFileView _grammarFile;
 
         public ParserForm()
         {
             InitializeComponent();
-            _instanceFileDialog = new OpenFileDialog();
-            _grammarFileDialog = new OpenFileDialog();
+            OpenFileDialog instanceFileDialog = new OpenFileDialog();
+            OpenFileDialog grammarFileDialog = new OpenFileDialog();
             _validator = new Validator(txtInstance.Text, txtGrammar.Text);
             txtInstance_TextChanged(null, null);
             txtGrammar_TextChanged(null, null);
-        }
 
-        private void _loadFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
-        {
-            if (!String.IsNullOrEmpty(dialog.FileName))
-            {
-                SimpleFileReader reader = new SimpleFileReader(dialog.FileName);
-                target.ReadOnly = true;
-                target.Text = reader.Read();
-                loadButton.Enabled = false;
-                unloadButton.Enabled = true;
-                fileNameContainer.Text = dialog.FileName;
-            }
-        }
-
-        private void _unloadFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
-        {
-            txtOutput.Text = "Unloaded file: " + dialog.FileName;
-            dialog.FileName = null;
-            target.ReadOnly = false;
-            target.Clear();
-            loadButton.Enabled = true;
-            unloadButton.Enabled = false;
-            fileNameContainer.Clear();
-        }
-
-        private void _editFile(OpenFileDialog dialog, TextBox target, TextBox fileNameContainer, Button loadButton, Button unloadButton)
-        {
-            target.ReadOnly = false;
-            dialog.FileName = null;
-            loadButton.Enabled = true;
-            unloadButton.Enabled = false;
-            fileNameContainer.Clear();
+            _instanceFile = new XmlFileView(new OpenFileDialog(), txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
+            _grammarFile = new XmlFileView(new OpenFileDialog(), txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
         }
 
 
@@ -69,36 +39,34 @@ namespace relax_ng
 
         private void btnBrowseInstance_Click(object sender, EventArgs e)
         {
-            _instanceFileDialog.ShowDialog();
-            _loadFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
+            _instanceFile.LoadFile();
         }
 
         private void btnBrowseGrammar_Click(object sender, EventArgs e)
         {
-            _grammarFileDialog.ShowDialog();
-            _loadFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
+            _grammarFile.LoadFile();
         }
 
         private void txtInstance_DoubleClick(object sender, EventArgs e)
         {
             if (txtInstance.ReadOnly == true)
-                _editFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
+                _instanceFile.EditFile();
         }
 
         private void txtGrammar_DoubleClick(object sender, EventArgs e)
         {
             if (txtGrammar.ReadOnly == true)
-                _editFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
+                _grammarFile.EditFile();
         }
 
         private void btnRemoveInstanceFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_instanceFileDialog, txtInstance, txtInstanceEditMode, btnBrowseInstance, btnRemoveInstanceFile);
+            _instanceFile.UnloadFile();
         }
 
         private void btnRemoveGrammarFile_Click(object sender, EventArgs e)
         {
-            _unloadFile(_grammarFileDialog, txtGrammar, txtGrammarEditMode, btnBrowseGrammar, btnRemoveGrammarFile);
+            _grammarFile.UnloadFile();
         }
 
         private void txtInstance_TextChanged(object sender, EventArgs e)
